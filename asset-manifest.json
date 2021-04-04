@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/cognitiveAssessment/static/js/main.27f05504.chunk.js",
-    "main.js.map": "/cognitiveAssessment/static/js/main.27f05504.chunk.js.map",
+    "main.js": "/cognitiveAssessment/static/js/main.92cce30e.chunk.js",
+    "main.js.map": "/cognitiveAssessment/static/js/main.92cce30e.chunk.js.map",
     "runtime-main.js": "/cognitiveAssessment/static/js/runtime-main.662f6302.js",
     "runtime-main.js.map": "/cognitiveAssessment/static/js/runtime-main.662f6302.js.map",
-    "static/js/2.aafaba3f.chunk.js": "/cognitiveAssessment/static/js/2.aafaba3f.chunk.js",
-    "static/js/2.aafaba3f.chunk.js.map": "/cognitiveAssessment/static/js/2.aafaba3f.chunk.js.map",
+    "static/js/2.825423be.chunk.js": "/cognitiveAssessment/static/js/2.825423be.chunk.js",
+    "static/js/2.825423be.chunk.js.map": "/cognitiveAssessment/static/js/2.825423be.chunk.js.map",
     "index.html": "/cognitiveAssessment/index.html",
-    "static/js/2.aafaba3f.chunk.js.LICENSE.txt": "/cognitiveAssessment/static/js/2.aafaba3f.chunk.js.LICENSE.txt"
+    "static/js/2.825423be.chunk.js.LICENSE.txt": "/cognitiveAssessment/static/js/2.825423be.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.662f6302.js",
-    "static/js/2.aafaba3f.chunk.js",
-    "static/js/main.27f05504.chunk.js"
+    "static/js/2.825423be.chunk.js",
+    "static/js/main.92cce30e.chunk.js"
   ]
 }
