@@ -5,6 +5,7 @@ import {fetchQuestions} from './API'
 import {QuestionState} from './API'
 import {GlobalStyle} from './index'
 import {Howl, Howler} from 'howler';
+import { start } from 'repl';
 
 export type AnswerObj = {
   question: string;
@@ -13,7 +14,7 @@ export type AnswerObj = {
   correctAnswer: string;
 }
 
-const TOTAL_NUM_QUESTIONS = 2;
+const TOTAL_NUM_QUESTIONS = 20;
 let time = 60;
 const timerElement = document.getElementById('Timer');
 let minutes = 1;
@@ -21,12 +22,15 @@ let seconds = 60;
 let adaptedList = ["Performance on this examination is as follows"];
 
 
-const soundPatterned = new Howl({
-  src:["https://cf-media.sndcdn.com/scMK645cJirm.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vc2NNSzY0NWNKaXJtLjEyOC5tcDMiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2MTYwMDQyMTN9fX1dfQ__&Signature=L4FpY9my0rK0-vgcn2~oBXjJ9m-URLc-fbLnHQVlFkoBBQn8-kOn8ilpiFw4hjNnyT-FCjrxrTZ88tGRTwwlToYf65WrT8v5tZ58iwqRfc-dxuKRD0yXuQJVCCbK2NiK1Inb8CVtYwo46f97SdIlYL7HpJbV6ZIhwGi8hdQefV0r~ujpTaL3936x02-wuEx7ejkcT4dWw0R4UiiDsOFiHMJs-ziYsAg5~inIAxJ2Bx9EOULffsjWf3T7DmilokGFEC3PlDgwXLVl4KV6BgUr9slzSmhAPtHrd5Kd7jT7UGpCQ-FJSY9LejFuARYQWwu~rusMmRC6zC29fhTZii~Lfw__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ"]
+/*const  = new Howl({
+  src:["https://soundbible.com/mp3/45min_april_rainstorm-mike-koenig.mp3"]
 });
 const soundRandom = new Howl({
-  src:["https://cf-media.sndcdn.com/EE4d2XqD9NZi.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vRUU0ZDJYcUQ5TlppLjEyOC5tcDMiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2MTYwMDM4MjV9fX1dfQ__&Signature=OXTWidDpdH~pKfXxjh7j70RpK8ws67k3Rb2hX50miWU2hxrz2Z-tXFl~CLhOubFuuBxAzXnhYNXLpq91ziWASBdnQPx250XwzZ1WkIMQpk1d9j12nywYqz73K5tHPUQNr1xkTcYLfxa6I3jxKvLp3-RwuMSCj-eC5UCaI48PIXIpH1tY~hFRJTCYJEyJbEGQXCxPvkuK7mm98RsHndJM7LKqD4vkwkfzz~y63pM5FVeYs7dCGfFJWVR7WqVOmquE0TvD25ySGWCyls~njT9ZgXRIvCf1rdJI1y5OTFDn5LlIpUXLM1Z5oFytt~MBlPvLLJFUBYLWzL4GAhah6azitQ__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ"]
-});
+  src:["https://soundbible.com/mp3/45min_april_rainstorm-mike-koenig.mp3"]
+});*/
+
+let soundPatterned = new Audio("https://cf-media.sndcdn.com/scMK645cJirm.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vc2NNSzY0NWNKaXJtLjEyOC5tcDMiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2MTc1MzQ3MTZ9fX1dfQ__&Signature=T1Z8-P1YMhNecx6naHqNh~Ka9YqDGrkRib0QutBfEnSmSlEr4j8huilNCNlGGNdPilhEmSETy7DL2oIini0UT0n7P3MakgEsa7INs4Vnx6k-hYObHZYau6DKV0-4EJZWOZ80tt2Cw5utUWPKXpyPgkrbZfmM2qvwRRPSWE9ZAPc5KW3unysUDoGDwoPNlsNmxJVDTkc-jC2qbGScmTrK1e84S6nNlho9b3Mr5pWa6KG6Xio-eknMCb-OCWxpmF1BczXdAW2pXJO7kAJ43X5YfaAALisQfngaxr60OyMzJvVNRcqgOh-4ibRmdxQ6wc8S3dcytcy1Gc~Q7YImRJxKlA__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ");
+let soundRandom = new Audio("https://cf-media.sndcdn.com/EE4d2XqD9NZi.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vRUU0ZDJYcUQ5TlppLjEyOC5tcDMiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2MTc1MzQ3NjB9fX1dfQ__&Signature=crucSiN~~DCbe10JGhxVsLvShFOziURpKBp4gjoMqtcI7ezaCFHjgmidtOWi0neZbpBY6YXjLsanKeqsxJZQe-UjNYtPtjaGYuZYblqJVIZH51anKh5zTdakxPRaADutvKZleXkNJ7-Ab8gcL6dOmitt7BzcbNxwPloTh7qY1~pzmfpjNjPkAU6dHxAc7Mf~r9WEkbSv6S7eihlnKMMYy8nxMa57AYQngzTSTsVJNQ9PNoP7z6Fkh4S-J70iesSKer2hlgjx92oyK7EcnYRNNfNhrqwaUtgF9Hm6kKaZRVCfofnAP5sGlDGuBh8Rzt~8dwuSYtTz~KhbNSDoQl7Zmg__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ");
 
 const App = () => {
   const [load, setLoad] = useState(false);
@@ -40,11 +44,21 @@ const App = () => {
   console.log(questions);
 
   const playPatternedSound = async() => {
-    soundPatterned.play();
+    soundRandom.pause()
+    adaptedList.concat("Test Type 2");
+    soundPatterned.play()
     startQuiz();
   }
   const playRandomSound = async() => {
-    soundRandom.play();
+    soundPatterned.pause()
+    adaptedList.concat("Test Type 3");
+    soundRandom.play()
+    startQuiz();
+  }
+
+  const playNoSound = async() => {
+    soundPatterned.pause()
+    soundRandom.pause()
     startQuiz();
   }
     
@@ -87,6 +101,9 @@ const App = () => {
       setListOfQ(adaptedList);
       //setInterval(workingTimer, 1000);
     }
+    else {
+      soundRandom.pause()
+    }
   };
 
   const goNext = () => {
@@ -112,16 +129,16 @@ const App = () => {
         {"\n"}
       </p>
       {gameStatus || userAns.length === TOTAL_NUM_QUESTIONS ? (
-        <button className='Start No Distraction Assessment' onClick={startQuiz}>
-        Start the Assessment: No distraction</button>)
+        <button className='Start No Distraction Assessment' onClick={playNoSound}>
+        Start the Assessment: Test Type 1</button>)
       :null}
       {gameStatus || userAns.length === TOTAL_NUM_QUESTIONS ? (
         <button className='Start Patterned Distraction Assessment' onClick={playPatternedSound}>
-        Start the Assessment: Patterned distraction</button>)
+        Start the Assessment: Test Type 2</button>)
       :null}
       {gameStatus || userAns.length === TOTAL_NUM_QUESTIONS ? (
         <button className='Start Random Distraction Assessment' onClick={playRandomSound}>
-        Start the Assessment: Random distraction</button>) 
+        Start the Assessment: Test Type 3</button>) 
       :null}
       {!gameStatus ? <p className='scorecard'>Score: {score}</p> :null}
       {load 
