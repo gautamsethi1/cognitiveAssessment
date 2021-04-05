@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/cognitiveAssessment/static/js/main.2308b990.chunk.js",
-    "main.js.map": "/cognitiveAssessment/static/js/main.2308b990.chunk.js.map",
+    "main.js": "/cognitiveAssessment/static/js/main.a8448205.chunk.js",
+    "main.js.map": "/cognitiveAssessment/static/js/main.a8448205.chunk.js.map",
     "runtime-main.js": "/cognitiveAssessment/static/js/runtime-main.662f6302.js",
     "runtime-main.js.map": "/cognitiveAssessment/static/js/runtime-main.662f6302.js.map",
     "static/js/2.825423be.chunk.js": "/cognitiveAssessment/static/js/2.825423be.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.662f6302.js",
     "static/js/2.825423be.chunk.js",
-    "static/js/main.2308b990.chunk.js"
+    "static/js/main.a8448205.chunk.js"
   ]
 }
